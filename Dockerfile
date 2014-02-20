@@ -16,4 +16,4 @@ ADD supervisord.conf /etc/supervisord.conf
 RUN mysql_install_db --user=root --basedir=/usr --datadir=/var/lib/mysql/
 
 # actually run the services
-CMD ['supervisord -n']
+CMD ['/usr/bin/supervisord -n']
