@@ -22,4 +22,4 @@ RUN mkdir -p /run/php-fpm
 EXPOSE 80
 
 # actually run the services
-CMD ["/usr/bin/supervisord", "-n"]
+CMD ["/usr/bin/supervisord"]
