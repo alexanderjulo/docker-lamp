@@ -1,7 +1,9 @@
 # docker-lamp (archlinux based)
-A simple and mostly automatic LAMP setup. It is based on arch as the base image is especially small and minimal.
+A simple and mostly automatic LAMP setup. Well, actually it is more like a LNMP, as I use nginx in favour of apache, but everybody uses the term and in this context I doubt there are many usecases where it matters.
 
-It will use the `arch/base` image, install nginx, php-fpm, mysqld and supervisor, configure them and make supervisor manage nginx, php-fpm and mysqld as systemd is not working within docker containers yet.
+It is based on arch as the base image is especially small and minimal (and I know arch way better than ubuntu/debian).
+
+It will download the `arch/base` image, install nginx, php-fpm, mysqld and supervisor, configure them and make supervisor manage nginx, php-fpm and mysqld as systemd is not working within docker containers yet.
 
 ## Usage
 Install the container using
