@@ -15,5 +15,9 @@ ADD supervisord.conf /etc/supervisord.conf
 # setup mysql
 RUN mysql_install_db --user=root --basedir=/usr --datadir=/var/lib/mysql/
 
+
+# expose nginx
+EXPOSE 80
+
 # actually run the services
 CMD ['/usr/bin/supervisord -n']
