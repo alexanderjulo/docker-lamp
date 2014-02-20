@@ -14,7 +14,13 @@ Then run it using:
 
     docker run -d <yourname>/lamp
 
-Mount your web app under `/srv/http` using docker's `-v` switch to make the container serve it up.
+Mount your web app under `/srv/http` using docker's `-v` switch to make the container serve it up. Use `-p 80` to expose the container's port.
+
+A real world example could look like this:
+
+    docker run -d -p 80 -v /vagrant/app:/srv/http -name app <yourname>/lamp
+
+In this one docker is run in a vagrant machine and the app is in the vagrant shared folder in `app`. It will then be served by nginx/php-fpm in the container. Run `docker ps` to find out which port was assigned on the host. By accessing `<host>:<assigned port>` on the browser, you will be able to access your app.
 
 ## Modify / Fork
 If you need adjustments to configuration, rewrites or other stuff, you can fork my github repository and then build your fork by using the `docker build` command above. Just replace my repository with yours.
@@ -23,6 +29,7 @@ If you need adjustments to configuration, rewrites or other stuff, you can fork 
 I have modified some configuration and most of the services to keep the setup as simple as possible without using systemd. As containers are one-purpose things everything just runs as root. You can check the sections below to find out what modifications I made where.
 
 ### mysql
+* Access as root user with no password
 * Override default installation
 * Run as root
 
