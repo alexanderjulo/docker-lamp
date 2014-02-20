@@ -1,4 +1,4 @@
-FROM arch/base
+FROM base/arch
 MAINTAINER Alexander Jung-Loddenkemper <alexander@julo.ch>
 
 # update the system
