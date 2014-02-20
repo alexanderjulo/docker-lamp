@@ -20,4 +20,4 @@ RUN mysql_install_db --user=root --basedir=/usr --datadir=/var/lib/mysql/
 EXPOSE 80
 
 # actually run the services
-CMD ['/usr/bin/supervisord -n']
+CMD ["/usr/bin/supervisord", "-n"]
