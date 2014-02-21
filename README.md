@@ -5,14 +5,28 @@ It is based on arch as the base image is especially small and minimal (and I kno
 
 It will download the `arch/base` image, install nginx, php-fpm, mysqld and supervisor, configure them and make supervisor manage nginx, php-fpm and mysqld as systemd is not working within docker containers yet.
 
+**For a more detailed guide to setting up dev environments with docker, check out [my blog post](https://julo.ch/blog/docker-dev-environment)**
+
 ## Usage
-Install the container using
+You can either just pull the image from the docker index using:
+
+    docker pull alexanderjulo/lamp
+
+or you can build the image yourself, using
 
     docker build -t <yourname>/lamp git://github.com/alexex/docker-lamp.git
 
-Then run it using:
+I do not guarantee that the version on the docker index is up-to-date at all times, but it should be at most. If you want to be sure or are sure that it is not up-to-date build the image yourself (it's really quick, too).
+
+Run a container with the new image using:
 
     docker run -d <yourname>/lamp
+
+Or
+    
+    docker run -d alexanderjulo/lamp
+
+If you just
 
 Mount your web app under `/srv/http` using docker's `-v` switch to make the container serve it up. Use `-p 80` to expose the container's port.
 
@@ -24,6 +38,8 @@ In this one docker is run in a vagrant machine and the app is in the vagrant sha
 
 ## Modify / Fork
 If you need adjustments to configuration, rewrites or other stuff, you can fork my github repository and then build your fork by using the `docker build` command above. Just replace my repository with yours.
+
+If you are happy to have your changes locally you can just run an image and commit the container changes to a new image or a new tag on the same image. Whatever your prefer. This approach is the only valid if you need data volumes to work.
 
 ## Additional information
 I have modified some configuration and most of the services to keep the setup as simple as possible without using systemd. As containers are one-purpose things everything just runs as root. You can check the sections below to find out what modifications I made where.
