@@ -11,6 +11,7 @@ ADD nginx.conf /etc/nginx/nginx.conf
 ADD php-fpm.conf /etc/php/php-fpm.conf
 ADD php.ini /etc/php/php.ini
 ADD supervisord.conf /etc/supervisord.conf
+ADD shell.sh /bin/shell
 
 # setup mysql
 RUN mysql_install_db --user=root --basedir=/usr --datadir=/var/lib/mysql/
