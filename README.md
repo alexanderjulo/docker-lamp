@@ -1,9 +1,9 @@
-# docker-lamp (archlinux based)
+# docker-lamp (ubuntu based)
 A simple and mostly automatic LAMP setup. Well, actually it is more like a LNMP, as I use nginx in favour of apache, but everybody uses the term and in this context I doubt there are many usecases where it matters.
 
-It is based on arch as the base image is especially small and minimal (and I know arch way better than ubuntu/debian).
+It is based on phusion's base docker image, as it takes care of service managment for me and is fine in terms of size.
 
-It will download the `arch/base` image, install nginx, php-fpm, mysqld and supervisor, configure them and make supervisor manage nginx, php-fpm and mysqld as systemd is not working within docker containers yet.
+It will download the `phusion/baseimage` image, install nginx, php-fpm and mysqld, configure them and install service scripts for runit to start them.
 
 **For a more detailed guide to setting up dev environments with docker, check out [my blog post](https://julo.ch/blog/docker-dev-environment)**
 
@@ -14,7 +14,7 @@ You can either just pull the image from the docker index using:
 
 or you can build the image yourself, using
 
-    docker build -t <yourname>/lamp git://github.com/alexex/docker-lamp.git
+    docker build --rm -t <yourname>/lamp git://github.com/alexex/docker-lamp.git
 
 I do not guarantee that the version on the docker index is up-to-date at all times, but it should be at most. If you want to be sure or are sure that it is not up-to-date build the image yourself (it's really quick, too).
 
@@ -46,17 +46,14 @@ I have modified some configuration and most of the services to keep the setup as
 
 ### mysql
 * Access as root user with no password
-* Override default installation
-* Run as root
 
 ### `nginx.conf`
-* Change user to root
 * One server serving at localhost from /srv/http using php
-* Added `daemon off` to enable control by supervisord
+* Added `daemon off` to enable control by runit
 * All comments removed
 
 ### `php-fpm.conf`
-* Change user to root
+* Added `daemonize off` to enable control by runit
 * Remove unnecessary settings & comments
 * Besides: all settings still default
 
